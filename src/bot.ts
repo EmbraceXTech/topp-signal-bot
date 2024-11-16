@@ -19,7 +19,11 @@ export class Bot {
         console.log("Running internal");
         for (let i = 0; i < config.privateKeys.length; i++) {
             console.log(`Placing bid for wallet ${i}`);
-            await this.placeRandomBid(i);
+            try {
+                await this.placeRandomBid(i);
+            } catch (error) {
+                console.error(`Error placing bid for wallet ${i}: ${error}`);
+            }
         }
     }
 
